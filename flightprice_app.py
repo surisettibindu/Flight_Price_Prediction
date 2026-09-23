@@ -1,249 +1,250 @@
-"""
-✈️ Flight Price Dataset
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
-A structured Flight Price Dataset containing 100 synthetic flight records and 15 features. This dataset is designed for data analysis, exploratory data analysis (EDA), data visualization, machine learning, and flight fare prediction projects.
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+# PAGE CONFIGURATION
 
-📌 Project Overview
+st.set_page_config(page_title="Flight Price Prediction",page_icon="✈️",layout="wide")
 
-Flight ticket prices depend on several factors such as airline, travel class, route, distance, number of stops, booking time, season, and baggage allowance.
+# CUSTOM CSS
 
-This dataset provides a compact and beginner-friendly collection of flight-related features that can be used to explore relationships between these variables and ticket prices.
+st.markdown("""<style>
+    .main-title {font-size: 42px;font-weight: bold;text-align: center;margin-bottom: 10px;}
+    .subtitle {text-align: center;color: #666;margin-bottom: 30px;}
+    .metric-card {padding: 15px;border-radius: 10px;background-color: #f5f5f5;text-align: center;}</style>""", unsafe_allow_html=True)
 
-> **Note:** This is a synthetic dataset created for educational and demonstration purposes. The prices do not represent real-time airline fares.
+# LOAD DATA
 
+@st.cache_data
+def load_data():
+    return pd.read_csv("flightprice.csv")
+try:
+    df = load_data()
+except FileNotFoundError:
+    st.error("Dataset not found. Please place ""`flightprice.csv` in the same folder as app.py.")
+    st.stop()
 
-📊 Dataset Summary
+# TITLE
 
-| Property        |                               Value |
-| --------------- | ----------------------------------: |
-| File            | `flight_price_dataset_100_rows.csv` |
-| Records         |                                 100 |
-| Features        |                                  15 |
-| Target Variable |                         `Price_INR` |
-| Currency        |                             INR (₹) |
-| Data Type       |                           Synthetic |
-| Format          |                                 CSV |
+st.markdown('<div class="main-title">✈️ Flight Price Prediction Dashboard</div>',unsafe_allow_html=True)
+st.markdown('<div class="subtitle">''Explore flight prices, analyze travel patterns, and predict ticket prices.''</div>',unsafe_allow_html=True)
 
+# SIDEBAR
 
-🗂️ Dataset Features
+st.sidebar.header("🔎 Filters")
+airlines = st.sidebar.multiselect("Airline",options=sorted(df["Airline"].unique()),default=sorted(df["Airline"].unique()))
+classes = st.sidebar.multiselect("Travel Class",options=sorted(df["Class"].unique()),default=sorted(df["Class"].unique()))
+seasons = st.sidebar.multiselect("Season",options=sorted(df["Season"].unique()),default=sorted(df["Season"].unique()))
+stops = st.sidebar.multiselect("Number of Stops",options=sorted(df["Stops"].unique()),default=sorted(df["Stops"].unique()))
 
-|  # | Column                 | Data Type   | Description                           |
-| -: | ---------------------- | ----------- | ------------------------------------- |
-|  1 | `Flight_ID`            | String      | Unique flight identifier              |
-|  2 | `Airline`              | Categorical | Airline operating the flight          |
-|  3 | `Source`               | Categorical | Departure city                        |
-|  4 | `Destination`          | Categorical | Arrival city                          |
-|  5 | `Departure_Date`       | Date        | Scheduled departure date              |
-|  6 | `Departure_Time`       | Time        | Scheduled departure time              |
-|  7 | `Arrival_Time`         | Time        | Scheduled arrival time                |
-|  8 | `Duration_Minutes`     | Integer     | Flight duration in minutes            |
-|  9 | `Stops`                | Integer     | Number of stops                       |
-| 10 | `Class`                | Categorical | Economy, Premium Economy, or Business |
-| 11 | `Distance_KM`          | Integer     | Approximate flight distance           |
-| 12 | `Booking_Advance_Days` | Integer     | Days between booking and departure    |
-| 13 | `Season`               | Categorical | Regular, Peak, or Off-Peak            |
-| 14 | `Baggage_KG`           | Integer     | Included baggage allowance            |
-| 15 | `Price_INR`            | Integer     | Ticket price in Indian Rupees         |
+# FILTER DATA
 
+filtered_df = df[(df["Airline"].isin(airlines)) &(df["Class"].isin(classes)) &(df["Season"].isin(seasons)) &(df["Stops"].isin(stops))]
 
-✈️ Airlines
+# TOP METRICS
 
-The dataset contains records from:
+col1, col2, col3, col4 = st.columns(4)
 
-* IndiGo
-* Air India
-* Vistara
-* SpiceJet
-* Go First
+with col1:
+    st.metric("✈️ Flights",len(filtered_df))
+with col2:
+    st.metric("💰 Average Price",f"₹{filtered_df['Price_INR'].mean():,.0f}")
+with col3:
+    st.metric("📈 Maximum Price",f"₹{filtered_df['Price_INR'].max():,.0f}")
+with col4:
+    st.metric("📉 Minimum Price",f"₹{filtered_df['Price_INR'].min():,.0f}")
+st.divider()
 
+# TABS
 
-🌍 Routes
+tab1, tab2, tab3, tab4 = st.tabs(["📋 Dataset","📊 Analysis","📈 Visualizations","🤖 Price Prediction"])
 
-Sample routes represented in the dataset include:
+# TAB 1 - DATASET
 
-* Delhi → Mumbai
-* Mumbai → Delhi
-* Delhi → Bangalore
-* Bangalore → Delhi
-* Mumbai → Bangalore
-* Hyderabad → Delhi
-* Delhi → Hyderabad
-* Chennai → Delhi
-* Delhi → Kolkata
-* Kolkata → Delhi
-* Hyderabad → Mumbai
-* Mumbai → Chennai
+with tab1:
 
+    st.subheader("📋 Flight Dataset")
+    st.write(f"Showing **{len(filtered_df)}** of **{len(df)}** flight records.")
+    st.dataframe(filtered_df,use_container_width=True,hide_index=True)
+    st.subheader("📌 Dataset Information")
+    info_col1, info_col2 = st.columns(2)
 
-💺 Travel Classes
+    with info_col1:
+        st.write("**Rows:**", df.shape[0])
+        st.write("**Columns:**", df.shape[1])
+        st.write("**Missing Values:**", df.isnull().sum().sum())
 
-The dataset includes:
+    with info_col2:
+        st.write("**Average Price:**",f"₹{df['Price_INR'].mean():,.2f}")
+        st.write("**Average Duration:**",f"{df['Duration_Minutes'].mean():.0f} minutes")
+        st.write("**Average Distance:**",f"{df['Distance_KM'].mean():.0f} km")
+    st.subheader("📥 Download Filtered Dataset")
+    csv = filtered_df.to_csv(index=False).encode("utf-8")
+    st.download_button(label="Download CSV",data=csv,file_name="filtered_flight_dataset.csv",mime="text/csv")
 
-* **Economy**
-* **Premium Economy**
-* **Business**
+# TAB 2 - ANALYSIS
 
+with tab2:
 
-🎯 Target Variable
+    st.subheader("📊 Statistical Analysis")
+    st.dataframe(filtered_df.describe(),use_container_width=True)
+    st.subheader("💰 Average Price by Airline")
+    airline_price = (filtered_df.groupby("Airline")["Price_INR"].mean().sort_values(ascending=False))
+    st.dataframe(airline_price.reset_index(),use_container_width=True,hide_index=True)
+    st.subheader("💺 Average Price by Class")
+    class_price = (filtered_df.groupby("Class")["Price_INR"].mean().sort_values(ascending=False))
+    st.dataframe(class_price.reset_index(),use_container_width=True,hide_index=True)
+    st.subheader("🛑 Average Price by Number of Stops")
+    stop_price = (filtered_df.groupby("Stops")["Price_INR"].mean())
+    st.dataframe(stop_price.reset_index(),use_container_width=True,hide_index=True)
 
-The primary target variable is:
+# TAB 3 - VISUALIZATIONS
 
-text
-Price_INR
+with tab3:
 
+    st.subheader("📈 Flight Price Visualizations")
+    chart_type = st.selectbox("Select Visualization",["Average Price by Airline","Average Price by Class","Average Price by Stops","Price vs Distance","Price vs Booking Advance","Price Distribution"])
 
-It represents the simulated ticket price in Indian Rupees.
+    # Airline Chart
 
-This column can be used as the target for a **regression machine-learning problem**.
+    if chart_type == "Average Price by Airline":
+        data = (filtered_df.groupby("Airline")["Price_INR"].mean().sort_values())
+        st.bar_chart(data)
 
+    # Class Chart
 
-🔍 Possible Analysis
-
-This dataset can be used to investigate questions such as:
-
-* How does flight distance affect ticket price?
-* Does the number of stops influence the fare?
-* How does travel class affect ticket price?
-* Does booking earlier result in different prices?
-* How do ticket prices vary between airlines?
-* How does season affect flight prices?
-* Which routes have higher average fares?
-* Is flight duration related to ticket price?
-* Does baggage allowance have a relationship with price?
-
-
-🤖 Machine Learning Applications
-
-The dataset can be used to build a **Flight Price Prediction Model**.
-
-Possible Input Features
-
-text
-Airline
-Source
-Destination
-Departure_Date
-Departure_Time
-Duration_Minutes
-Stops
-Class
-Distance_KM
-Booking_Advance_Days
-Season
-Baggage_KG
-
-
-Prediction Target
+    elif chart_type == "Average Price by Class":
+        data = (filtered_df.groupby("Class")["Price_INR"].mean().sort_values())
+        st.bar_chart(data)
 
-text
-Price_INR
+    # Stops Chart
 
+    elif chart_type == "Average Price by Stops":
+        data = (filtered_df.groupby("Stops")["Price_INR"].mean())
+        st.bar_chart(data)
 
-Possible Algorithms
+    # Distance vs Price
 
-You can experiment with:
+    elif chart_type == "Price vs Distance":
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.scatter(filtered_df["Distance_KM"],filtered_df["Price_INR"])
+        ax.set_title("Flight Price vs Distance")
+        ax.set_xlabel("Distance (KM)")
+        ax.set_ylabel("Price (INR)")
+        st.pyplot(fig)
 
-* Linear Regression
-* Multiple Linear Regression
-* Decision Tree Regression
-* Random Forest Regression
-* Gradient Boosting
-* XGBoost
-* Random Forest
+    # Booking Advance vs Price
 
+    elif chart_type == "Price vs Booking Advance":
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.scatter(filtered_df["Booking_Advance_Days"],filtered_df["Price_INR"])
+        ax.set_title("Flight Price vs Booking Advance")
+        ax.set_xlabel("Booking Advance (Days)")
+        ax.set_ylabel("Price (INR)")
+        st.pyplot(fig)
 
-🧠 Example Machine Learning Workflow
+    # Price Distribution
 
-Load Dataset
-     ↓
-Data Cleaning
-     ↓
-Exploratory Data Analysis
-     ↓
-Feature Engineering
-     ↓
-Categorical Encoding
-     ↓
-Train/Test Split
-     ↓
-Model Training
-     ↓
-Price Prediction
-     ↓
-Model Evaluation
+    elif chart_type == "Price Distribution":
+        fig,ax = plt.subplots(figsize=(10, 5))
+        ax.hist(filtered_df["Price_INR"],bins=15)
+        ax.set_title("Flight Price Distribution")
+        ax.set_xlabel("Price (INR)")
+        ax.set_ylabel("Number of Flights")
+        st.pyplot(fig)
 
+# TAB 4 - MACHINE LEARNING
 
-📁 Project Structure
+with tab4:
 
-A project using this dataset could be organized as:
+    st.subheader("🤖 Flight Price Prediction")
+    st.write("Use the trained Random Forest model to estimate a flight ticket price.")
 
-flight-price-prediction/
-│
-├── data/
-│   └── flight_price_dataset_100_rows.csv
-│
-├── notebooks/
-│   └── flight_price_analysis.ipynb
-│
-├── src/
-│   └── model.py
-│
-├── README.md
-│
-└── requirements.txt
+    # Features
 
+    features = ["Airline","Source","Destination","Duration_Minutes","Stops","Class","Distance_KM","Booking_Advance_Days","Season","Baggage_KG"]
+    target = "Price_INR"
 
-🎓 Suitable For
+    X = df[features]
+    y = df[target]
 
-This dataset is suitable for:
+    categorical_features = ["Airline","Source","Destination","Class","Season"]
+    numerical_features = ["Duration_Minutes","Stops","Distance_KM","Booking_Advance_Days","Baggage_KG"]
 
-* Beginner Python projects
-* Pandas practice
-* SQL practice
-* Exploratory Data Analysis
-* Data visualization
-* Machine learning assignments
-* Regression projects
-* College projects
-* Portfolio projects
-* Data science practice
-* Feature engineering exercises
+    # Train Model
+    
+    preprocessor = ColumnTransformer(transformers=[("categorical",OneHotEncoder(handle_unknown="ignore"),categorical_features),("numerical","passthrough",numerical_features)])
+    model = Pipeline(steps=[("preprocessor", preprocessor),("regressor",RandomForestRegressor(n_estimators=200,random_state=42))])
+    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.20,random_state=42)
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
 
+    # Model Metrics
 
-🚀 Future Improvements
+    mae = mean_absolute_error(y_test,predictions)
+    rmse = np.sqrt(mean_squared_error(y_test,predictions))
+    r2 = r2_score(y_test,predictions)
 
-Possible extensions include:
+    metric1, metric2, metric3 = st.columns(3)
 
-* Add thousands of flight records.
-* Include real historical flight prices.
-* Add departure and arrival airports.
-* Add aircraft type.
-* Add weekday/weekend information.
-* Add holiday indicators.
-* Add days until departure.
-* Add cancellation/refund information.
-* Add seat availability.
-* Add dynamic pricing information.
-* Build a web application for price prediction.
+    with metric1:
+        st.metric("MAE",f"₹{mae:,.0f}")
 
+    with metric2:
+        st.metric("RMSE",f"₹{rmse:,.0f}")
 
-📜 License
+    with metric3:
+        st.metric("R² Score",f"{r2:.3f}")
 
-This dataset is provided for **educational and demonstration purposes**.
+    st.divider()
 
-You may use, modify, and extend the dataset for learning and personal projects.
+    # Prediction Inputs
 
+    st.subheader("🎯 Enter Flight Details")
+    col1, col2 = st.columns(2)
 
-👤 Author
+    with col1:
+        selected_airline = st.selectbox("Airline",sorted(df["Airline"].unique()))
+        selected_source = st.selectbox("Source",sorted(df["Source"].unique()))
+        selected_destination = st.selectbox("Destination",sorted(df["Destination"].unique()))
+        selected_class = st.selectbox("Class",sorted(df["Class"].unique()))
+        selected_season = st.selectbox("Season",sorted(df["Season"].unique()))
 
-**Flight Price Dataset Project**
+    with col2:
+        duration = st.number_input("Duration (Minutes)",min_value=30,max_value=1000,value=150)
+        selected_stops = st.number_input("Number of Stops",min_value=0,max_value=5,value=0)
+        distance = st.number_input("Distance (KM)",min_value=100,max_value=5000,value=1000)
+        advance_days = st.number_input("Booking Advance (Days)",min_value=0,max_value=365,value=30)
+        baggage = st.number_input("Baggage (KG)",min_value=0,max_value=100,value=20)
 
-Created as a synthetic dataset for data analysis and machine-learning practice.
+    input_data = pd.DataFrame({
+        "Airline": [selected_airline],
+        "Source": [selected_source],
+        "Destination": [selected_destination],
+        "Duration_Minutes": [duration],
+        "Stops": [selected_stops],
+        "Class": [selected_class],
+        "Distance_KM": [distance],
+        "Booking_Advance_Days": [advance_days],
+        "Season": [selected_season],
+        "Baggage_KG": [baggage]})
 
 
-⭐ If You Use This Dataset
+    if st.button("💰 Predict Flight Price",type="primary"):
+       predicted_price = model.predict(input_data)[0]
+       st.success(f"Estimated Flight Price: ₹{predicted_price:,.0f}")
+       st.info("This prediction is based on the synthetic dataset and should be treated as an educational estimate.")
 
-If this dataset is useful for your project, consider adding your analysis, visualizations, or machine-learning model to your project repository.
+st.divider()
 
-**Happy Data Analyzing! ✈️📊**  """
+st.caption(
+    "✈️ Flight Price Prediction Dashboard"
+    "Built with Python, Pandas, Scikit-learn and Streamlit")
