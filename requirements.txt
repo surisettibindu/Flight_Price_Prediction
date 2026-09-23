@@ -1,8 +1,5 @@
-numpy
 pandas
 matplotlib
 seaborn
 streamlit
 scikit-learn
-LabelEncoder
-OrdinalEncoder
