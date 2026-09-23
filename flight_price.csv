@@ -1,0 +1,101 @@
+Flight_ID,Airline,Source,Destination,Departure_Date,Departure_Time,Arrival_Time,Duration_Minutes,Stops,Class,Distance_KM,Booking_Advance_Days,Season,Baggage_KG,Price_INR
+FL1001,IndiGo,Delhi,Mumbai,2026-11-05,22:00,01:35,215,0,Economy,1685,3,Regular,15,6666
+FL1002,Air India,Bangalore,Delhi,2026-12-04,22:45,00:28,103,1,Economy,1736,38,Peak,15,7000
+FL1003,Air India,Mumbai,Chennai,2026-11-24,15:00,19:24,264,0,Economy,1863,7,Peak,20,6014
+FL1004,Go First,Mumbai,Bangalore,2026-10-06,07:30,12:55,325,0,Business,1075,40,Peak,30,16028
+FL1005,Air India,Mumbai,Chennai,2026-10-09,12:00,13:53,113,1,Premium Economy,463,30,Off-Peak,20,6679
+FL1006,Air India,Hyderabad,Delhi,2026-11-15,07:15,10:32,197,1,Economy,1699,16,Regular,25,7942
+FL1007,SpiceJet,Mumbai,Bangalore,2026-12-21,06:15,09:37,202,1,Premium Economy,1889,52,Peak,25,12855
+FL1008,Vistara,Mumbai,Delhi,2026-10-28,19:15,23:26,251,0,Economy,2111,16,Off-Peak,30,7473
+FL1009,Go First,Mumbai,Bangalore,2026-12-14,09:45,14:54,309,1,Economy,749,4,Regular,15,4337
+FL1010,Air India,Hyderabad,Mumbai,2026-11-24,21:30,23:32,122,0,Economy,1258,56,Regular,15,6910
+FL1011,Go First,Mumbai,Bangalore,2026-12-22,05:30,09:54,264,0,Economy,1229,49,Regular,30,6442
+FL1012,IndiGo,Hyderabad,Mumbai,2026-11-08,10:00,15:49,349,1,Economy,1861,32,Regular,15,8075
+FL1013,Vistara,Mumbai,Bangalore,2026-10-31,07:45,09:44,119,0,Economy,461,49,Off-Peak,15,4609
+FL1014,Air India,Hyderabad,Mumbai,2026-11-30,11:15,14:09,174,0,Premium Economy,1166,26,Off-Peak,20,8771
+FL1015,SpiceJet,Delhi,Kolkata,2026-11-27,22:15,00:46,151,0,Economy,343,1,Regular,15,3492
+FL1016,Air India,Mumbai,Delhi,2026-10-05,20:15,00:34,259,0,Economy,1670,47,Off-Peak,30,6884
+FL1017,SpiceJet,Bangalore,Delhi,2026-11-30,16:45,21:43,298,0,Economy,1182,56,Off-Peak,15,5084
+FL1018,IndiGo,Delhi,Mumbai,2026-11-21,11:45,16:08,263,1,Economy,692,12,Peak,25,4333
+FL1019,Air India,Mumbai,Delhi,2026-11-26,05:00,07:20,140,0,Business,2012,55,Regular,15,25046
+FL1020,SpiceJet,Chennai,Delhi,2026-12-01,17:00,20:19,199,1,Premium Economy,637,17,Peak,20,8659
+FL1021,SpiceJet,Mumbai,Chennai,2026-12-11,22:00,03:39,339,0,Economy,419,4,Regular,30,3906
+FL1022,SpiceJet,Delhi,Kolkata,2026-12-07,10:00,12:50,170,0,Economy,2043,44,Regular,25,7525
+FL1023,IndiGo,Kolkata,Delhi,2026-11-01,21:30,23:20,110,1,Economy,1495,14,Off-Peak,20,8173
+FL1024,Air India,Mumbai,Bangalore,2026-11-20,07:00,09:37,157,1,Economy,947,37,Regular,15,5912
+FL1025,Go First,Bangalore,Delhi,2026-12-04,12:30,16:15,225,0,Economy,440,29,Off-Peak,20,3269
+FL1026,Go First,Hyderabad,Mumbai,2026-12-07,08:15,09:49,94,1,Economy,1658,57,Regular,30,6580
+FL1027,Air India,Mumbai,Bangalore,2026-11-06,13:45,17:02,197,1,Economy,1598,59,Regular,15,6803
+FL1028,SpiceJet,Mumbai,Bangalore,2026-10-06,10:45,12:16,91,0,Economy,836,28,Off-Peak,15,4588
+FL1029,IndiGo,Mumbai,Delhi,2026-12-28,22:15,01:01,166,0,Premium Economy,1492,3,Peak,20,8425
+FL1030,IndiGo,Hyderabad,Delhi,2026-10-27,18:15,21:52,217,1,Economy,1446,16,Regular,15,8016
+FL1031,SpiceJet,Delhi,Mumbai,2026-10-23,12:30,16:50,260,1,Economy,1671,45,Regular,25,6287
+FL1032,IndiGo,Chennai,Delhi,2026-10-29,12:15,15:27,192,1,Economy,925,13,Peak,20,4512
+FL1033,Vistara,Mumbai,Delhi,2026-11-05,22:30,02:59,269,1,Economy,2027,8,Peak,15,10773
+FL1034,Go First,Mumbai,Bangalore,2026-10-05,15:45,18:10,145,1,Economy,1910,33,Regular,25,8215
+FL1035,Go First,Bangalore,Delhi,2026-11-02,22:15,00:07,112,1,Economy,2195,5,Off-Peak,20,8037
+FL1036,Go First,Hyderabad,Delhi,2026-12-24,18:30,21:03,153,1,Economy,933,19,Off-Peak,15,5415
+FL1037,Air India,Delhi,Hyderabad,2026-12-25,14:45,19:29,284,1,Premium Economy,1560,1,Peak,20,11085
+FL1038,Air India,Delhi,Hyderabad,2026-12-14,21:45,01:59,254,0,Economy,737,51,Off-Peak,15,5073
+FL1039,IndiGo,Mumbai,Bangalore,2026-12-05,14:15,18:36,261,0,Business,781,10,Regular,15,13781
+FL1040,Air India,Chennai,Delhi,2026-12-18,11:45,13:52,127,0,Premium Economy,1478,16,Regular,15,9128
+FL1041,IndiGo,Delhi,Hyderabad,2026-10-29,06:15,09:15,180,1,Economy,1251,8,Peak,15,7472
+FL1042,SpiceJet,Hyderabad,Mumbai,2026-12-07,21:45,01:57,252,2,Premium Economy,1554,36,Peak,15,13175
+FL1043,SpiceJet,Chennai,Delhi,2026-11-03,21:45,01:21,216,1,Economy,1892,18,Peak,15,8239
+FL1044,Vistara,Bangalore,Delhi,2026-11-04,09:15,13:36,261,0,Economy,583,10,Off-Peak,15,4172
+FL1045,IndiGo,Delhi,Hyderabad,2026-11-22,18:45,23:04,259,0,Economy,723,38,Off-Peak,15,4946
+FL1046,Go First,Delhi,Hyderabad,2026-12-01,18:15,19:48,93,1,Economy,1098,18,Peak,25,5990
+FL1047,IndiGo,Delhi,Hyderabad,2026-11-13,09:00,13:57,297,1,Premium Economy,2183,38,Off-Peak,15,14391
+FL1048,IndiGo,Hyderabad,Mumbai,2026-11-24,17:30,20:09,159,1,Economy,832,21,Peak,25,4765
+FL1049,Vistara,Delhi,Hyderabad,2026-11-02,16:15,18:26,131,0,Economy,406,50,Off-Peak,15,4179
+FL1050,IndiGo,Bangalore,Delhi,2026-10-26,08:15,09:55,100,1,Economy,1269,17,Peak,15,6315
+FL1051,Go First,Kolkata,Delhi,2026-10-15,14:45,17:38,173,2,Economy,352,46,Regular,15,5027
+FL1052,Go First,Mumbai,Chennai,2026-12-20,08:00,11:34,214,0,Premium Economy,2041,28,Off-Peak,20,9825
+FL1053,IndiGo,Delhi,Kolkata,2026-12-22,08:45,13:09,264,0,Economy,1303,41,Peak,15,6618
+FL1054,SpiceJet,Delhi,Bangalore,2026-12-06,20:45,00:33,228,1,Premium Economy,1886,47,Off-Peak,20,11026
+FL1055,Vistara,Bangalore,Delhi,2026-10-12,17:30,21:22,232,1,Economy,1251,55,Peak,15,5735
+FL1056,SpiceJet,Bangalore,Delhi,2026-11-15,13:00,16:42,222,0,Premium Economy,1736,13,Regular,15,9549
+FL1057,SpiceJet,Chennai,Delhi,2026-12-11,19:00,22:33,213,1,Economy,1305,15,Peak,15,5393
+FL1058,Vistara,Hyderabad,Mumbai,2026-12-14,22:30,03:08,278,0,Economy,1171,30,Peak,20,5522
+FL1059,Vistara,Bangalore,Delhi,2026-10-16,10:15,13:23,188,0,Economy,1860,31,Peak,30,6741
+FL1060,Go First,Kolkata,Delhi,2026-11-06,10:30,12:51,141,1,Economy,1039,35,Regular,20,4697
+FL1061,IndiGo,Delhi,Mumbai,2026-12-10,20:00,23:59,239,1,Economy,2078,37,Peak,25,9528
+FL1062,SpiceJet,Chennai,Delhi,2026-11-13,20:00,23:04,184,2,Economy,2064,26,Peak,15,10375
+FL1063,Go First,Hyderabad,Mumbai,2026-12-27,07:15,09:12,117,0,Premium Economy,922,49,Peak,30,5719
+FL1064,Go First,Kolkata,Delhi,2026-10-29,18:30,00:27,357,0,Premium Economy,908,4,Off-Peak,15,6942
+FL1065,Air India,Hyderabad,Mumbai,2026-10-28,22:00,01:45,225,1,Economy,655,27,Peak,30,4553
+FL1066,SpiceJet,Mumbai,Bangalore,2026-10-05,19:00,22:28,208,0,Economy,2060,60,Peak,30,7845
+FL1067,Air India,Delhi,Hyderabad,2026-10-15,09:00,12:25,205,1,Premium Economy,1992,51,Peak,30,10115
+FL1068,Go First,Mumbai,Bangalore,2026-11-26,13:45,16:18,153,0,Economy,1124,39,Regular,25,5014
+FL1069,Vistara,Kolkata,Delhi,2026-11-02,05:30,07:13,103,0,Business,2012,49,Regular,25,23194
+FL1070,Go First,Hyderabad,Mumbai,2026-11-26,20:00,23:52,232,0,Economy,1600,27,Peak,20,6153
+FL1071,IndiGo,Delhi,Bangalore,2026-11-12,22:00,03:00,300,1,Economy,1120,21,Peak,20,5955
+FL1072,IndiGo,Delhi,Hyderabad,2026-12-05,06:15,07:45,90,1,Economy,1146,40,Peak,25,6175
+FL1073,IndiGo,Bangalore,Delhi,2026-11-04,20:00,22:37,157,1,Economy,1730,41,Off-Peak,15,5998
+FL1074,Air India,Mumbai,Bangalore,2026-12-10,08:45,10:22,97,1,Economy,2023,42,Regular,25,10213
+FL1075,Vistara,Delhi,Kolkata,2026-11-04,19:15,00:17,302,1,Business,799,59,Off-Peak,30,15931
+FL1076,Air India,Mumbai,Delhi,2026-11-05,05:30,10:32,302,0,Premium Economy,847,54,Off-Peak,30,7593
+FL1077,SpiceJet,Delhi,Bangalore,2026-11-27,17:45,23:22,337,0,Economy,1412,56,Regular,15,6846
+FL1078,Go First,Delhi,Hyderabad,2026-10-30,17:45,22:45,300,0,Economy,1744,51,Off-Peak,15,7889
+FL1079,SpiceJet,Delhi,Mumbai,2026-10-17,19:00,00:47,347,2,Economy,505,30,Regular,15,5661
+FL1080,SpiceJet,Hyderabad,Mumbai,2026-10-20,17:00,19:08,128,0,Business,993,55,Off-Peak,30,15560
+FL1081,SpiceJet,Hyderabad,Delhi,2026-12-20,12:30,18:09,339,1,Economy,440,48,Regular,25,5455
+FL1082,IndiGo,Hyderabad,Mumbai,2026-10-13,06:30,11:47,317,0,Economy,359,19,Peak,20,3824
+FL1083,SpiceJet,Delhi,Bangalore,2026-11-01,10:00,15:00,300,1,Premium Economy,648,25,Off-Peak,15,7571
+FL1084,SpiceJet,Kolkata,Delhi,2026-10-19,05:45,09:13,208,0,Economy,822,44,Off-Peak,15,5202
+FL1085,IndiGo,Chennai,Delhi,2026-11-14,19:30,23:33,243,1,Economy,812,25,Peak,15,4697
+FL1086,Air India,Delhi,Hyderabad,2026-12-13,05:45,10:18,273,1,Business,904,37,Off-Peak,15,15003
+FL1087,Go First,Mumbai,Chennai,2026-12-03,16:15,20:11,236,1,Economy,1942,40,Peak,15,8392
+FL1088,IndiGo,Hyderabad,Mumbai,2026-12-22,16:15,18:05,110,0,Economy,1486,19,Peak,25,4954
+FL1089,Air India,Bangalore,Delhi,2026-10-17,10:30,15:07,277,0,Premium Economy,2000,31,Peak,20,12865
+FL1090,IndiGo,Chennai,Delhi,2026-10-10,17:30,20:12,162,1,Economy,1685,26,Regular,20,6104
+FL1091,Go First,Mumbai,Delhi,2026-11-28,17:30,22:08,278,1,Economy,1497,15,Peak,15,5800
+FL1092,Go First,Delhi,Kolkata,2026-11-11,14:45,18:08,203,1,Economy,1250,3,Regular,20,5352
+FL1093,SpiceJet,Mumbai,Delhi,2026-10-13,16:45,20:15,210,1,Economy,1229,47,Regular,25,6547
+FL1094,IndiGo,Chennai,Delhi,2026-12-18,16:15,21:13,298,1,Economy,1713,16,Peak,15,7245
+FL1095,Vistara,Delhi,Kolkata,2026-12-22,19:00,23:33,273,0,Economy,550,42,Off-Peak,30,4591
+FL1096,IndiGo,Delhi,Mumbai,2026-11-12,07:15,10:49,214,2,Premium Economy,720,53,Regular,20,9147
+FL1097,Air India,Kolkata,Delhi,2026-10-01,22:30,02:21,231,1,Economy,566,8,Off-Peak,15,5728
+FL1098,Air India,Delhi,Mumbai,2026-11-15,06:15,09:46,211,1,Economy,843,34,Regular,15,6344
+FL1099,SpiceJet,Chennai,Delhi,2026-11-16,06:30,12:22,352,1,Economy,753,2,Regular,25,5142
+FL1100,SpiceJet,Delhi,Hyderabad,2026-12-27,07:30,09:55,145,0,Premium Economy,450,5,Regular,20,5473
